@@ -201,7 +201,7 @@ namespace A01_Calculator
 
         private void btnEquals_Click(object sender, EventArgs e)
         {
-            total(); //total
+            total(); //total of the equation
         }
     }
 }
