@@ -141,6 +141,7 @@
             btnPlus.TabIndex = 8;
             btnPlus.Text = "+";
             btnPlus.UseVisualStyleBackColor = false;
+            btnPlus.Click += Operator;
             // 
             // btnEquals
             // 
@@ -153,6 +154,7 @@
             btnEquals.TabIndex = 9;
             btnEquals.Text = "=";
             btnEquals.UseVisualStyleBackColor = false;
+            btnEquals.Click += btnEquals_Click;
             // 
             // btn1
             // 
@@ -204,6 +206,7 @@
             btnMinus.TabIndex = 13;
             btnMinus.Text = "-";
             btnMinus.UseVisualStyleBackColor = false;
+            btnMinus.Click += Operator;
             // 
             // btn4
             // 
@@ -255,6 +258,7 @@
             btnDivide.TabIndex = 17;
             btnDivide.Text = "/";
             btnDivide.UseVisualStyleBackColor = false;
+            btnDivide.Click += Operator;
             // 
             // btnTimes
             // 
@@ -267,6 +271,7 @@
             btnTimes.TabIndex = 21;
             btnTimes.Text = "*";
             btnTimes.UseVisualStyleBackColor = false;
+            btnTimes.Click += Operator;
             // 
             // btn9
             // 
