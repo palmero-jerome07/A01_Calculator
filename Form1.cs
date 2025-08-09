@@ -56,31 +56,27 @@ namespace A01_Calculator
 
             if (dotCount >= 1)
             {
-                if(btn.Text != ".")
+                if (btn.Text != ".")
                 {
                     txtDisplay.Text += btn.Text;
+                    txtEquation.Text += btn.Text;
                 }
             }
             else if (txtDisplay.Text == "" && btn.Text == ".")
             {
                 txtDisplay.Text = "0.";
-
-            } 
+                txtEquation.Text = "0.";
+            }
             else
             {
-
                 txtDisplay.Text += btn.Text;
-                if (txtDisplay.Text.Contains("..") )
+                if (txtDisplay.Text.Contains(".."))
                 {
                     txtDisplay.Text = txtDisplay.Text.Replace("..", ".");
                 }
-
-
-
+                txtEquation.Text += btn.Text;
             }
 
-
-            txtEquation.Text += btn.Text;
         }
 
         private void btn1_Click(object sender, EventArgs e)
@@ -146,7 +142,66 @@ namespace A01_Calculator
 
         private void btnDot_MouseDown(object sender, MouseEventArgs e)
         {
-            
+
+        }
+
+        private void btnPlus_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Operator(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+
+            if (double.TryParse(txtDisplay.Text, out firstNumber))
+            {
+
+                operation = btn.Text;
+                isNewEntry = true;
+                txtEquation.Text = firstNumber.ToString() + " " + operation + " ";
+            }
+        }
+        private void total()
+        {
+
+            double secondNumber = 0;
+            double result = 0;
+            if (!double.TryParse(txtDisplay.Text, out secondNumber))
+            {
+                MessageBox.Show("Please enter a valid number.");
+                return;
+            }
+            switch (operation)
+            {
+                case "+":
+                    result = firstNumber + secondNumber;
+                    break;
+                case "-":
+                    result = firstNumber - secondNumber;
+                    break;
+                case "*":
+                    result = firstNumber * secondNumber;
+                    break;
+                case "/":
+                    if (secondNumber == 0)
+                    {
+                        MessageBox.Show("Cannot divide by zero.", "Pogi ni jerome");
+                        return;
+                    }
+                    result = firstNumber / secondNumber;
+                    break;
+                default:
+                    MessageBox.Show("Please select an operation.", "Error");
+                    return;
+            }
+            txtDisplay.Text = result.ToString();
+            isNewEntry = true;
+        }
+
+        private void btnEquals_Click(object sender, EventArgs e)
+        {
+            total(); //total of the equation
         }
     }
 }
