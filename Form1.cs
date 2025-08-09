@@ -4,8 +4,8 @@ namespace A01_Calculator
     {
         private bool isNewEntry = true;
         private int originalWidth;
-        string operation;
-
+        string operation = "";
+        double firstNumber = 0;
         public Form1()
         {
             InitializeComponent();
@@ -30,6 +30,11 @@ namespace A01_Calculator
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
 
         }

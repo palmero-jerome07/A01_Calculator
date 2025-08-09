@@ -54,7 +54,8 @@
             btnClear = new Button();
             textBox2 = new TextBox();
             btnSettings = new Button();
-            label1 = new Label();
+            lblHistory = new Label();
+            txtHistory = new TextBox();
             SuspendLayout();
             // 
             // textBox1
@@ -350,24 +351,33 @@
             btnSettings.UseVisualStyleBackColor = true;
             btnSettings.Click += btnSettings_Click;
             // 
-            // label1
+            // lblHistory
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(264, 13);
-            label1.Name = "label1";
-            label1.Size = new Size(49, 17);
-            label1.TabIndex = 27;
-            label1.Text = "History";
-            label1.Click += label1_Click;
+            lblHistory.AutoSize = true;
+            lblHistory.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblHistory.Location = new Point(231, 18);
+            lblHistory.Name = "lblHistory";
+            lblHistory.Size = new Size(45, 15);
+            lblHistory.TabIndex = 27;
+            lblHistory.Text = "History";
+            lblHistory.Click += label1_Click;
+            // 
+            // txtHistory
+            // 
+            txtHistory.Location = new Point(231, 36);
+            txtHistory.Multiline = true;
+            txtHistory.Name = "txtHistory";
+            txtHistory.Size = new Size(107, 304);
+            txtHistory.TabIndex = 28;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
-            ClientSize = new Size(343, 352);
-            Controls.Add(label1);
+            ClientSize = new Size(350, 352);
+            Controls.Add(txtHistory);
+            Controls.Add(lblHistory);
             Controls.Add(btnSettings);
             Controls.Add(textBox2);
             Controls.Add(btnErase);
@@ -430,6 +440,7 @@
         private Button btnClear;
         private TextBox textBox2;
         private Button btnSettings;
-        private Label label1;
+        private Label lblHistory;
+        private TextBox txtHistory;
     }
 }
