@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox1 = new TextBox();
+            txtDisplay = new TextBox();
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
@@ -52,19 +52,20 @@
             btnErase = new Button();
             btnDelete = new Button();
             btnClear = new Button();
-            textBox2 = new TextBox();
+            txtEquation = new TextBox();
             btnSettings = new Button();
             lblHistory = new Label();
             txtHistory = new TextBox();
             SuspendLayout();
             // 
-            // textBox1
+            // txtDisplay
             // 
-            textBox1.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(12, 52);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(210, 35);
-            textBox1.TabIndex = 0;
+            txtDisplay.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtDisplay.Location = new Point(12, 59);
+            txtDisplay.Name = "txtDisplay";
+            txtDisplay.Size = new Size(210, 35);
+            txtDisplay.TabIndex = 0;
+            txtDisplay.TextAlign = HorizontalAlignment.Right;
             // 
             // button1
             // 
@@ -113,6 +114,7 @@
             btn0.TabIndex = 6;
             btn0.Text = "0";
             btn0.UseVisualStyleBackColor = false;
+            btn0.Click += btn0_Click;
             // 
             // btnDot
             // 
@@ -125,6 +127,8 @@
             btnDot.TabIndex = 7;
             btnDot.Text = ".";
             btnDot.UseVisualStyleBackColor = false;
+            btnDot.Click += btnDot_Click;
+            btnDot.MouseDown += btnDot_MouseDown;
             // 
             // btnPlus
             // 
@@ -161,6 +165,7 @@
             btn1.TabIndex = 10;
             btn1.Text = "1";
             btn1.UseVisualStyleBackColor = false;
+            btn1.Click += btn1_Click;
             // 
             // btn2
             // 
@@ -173,6 +178,7 @@
             btn2.TabIndex = 11;
             btn2.Text = "2";
             btn2.UseVisualStyleBackColor = false;
+            btn2.Click += btn2_Click;
             // 
             // btn3
             // 
@@ -185,6 +191,7 @@
             btn3.TabIndex = 12;
             btn3.Text = "3";
             btn3.UseVisualStyleBackColor = false;
+            btn3.Click += btn3_Click;
             // 
             // btnMinus
             // 
@@ -209,6 +216,7 @@
             btn4.TabIndex = 14;
             btn4.Text = "4";
             btn4.UseVisualStyleBackColor = false;
+            btn4.Click += btn4_Click;
             // 
             // btn5
             // 
@@ -221,6 +229,7 @@
             btn5.TabIndex = 15;
             btn5.Text = "5";
             btn5.UseVisualStyleBackColor = false;
+            btn5.Click += btn5_Click;
             // 
             // btn6
             // 
@@ -233,6 +242,7 @@
             btn6.TabIndex = 16;
             btn6.Text = "6";
             btn6.UseVisualStyleBackColor = false;
+            btn6.Click += btn6_Click;
             // 
             // btnDivide
             // 
@@ -269,6 +279,7 @@
             btn9.TabIndex = 20;
             btn9.Text = "9";
             btn9.UseVisualStyleBackColor = false;
+            btn9.Click += btn9_Click;
             // 
             // btn8
             // 
@@ -281,6 +292,7 @@
             btn8.TabIndex = 19;
             btn8.Text = "8";
             btn8.UseVisualStyleBackColor = false;
+            btn8.Click += btn8_Click;
             // 
             // btn7
             // 
@@ -293,6 +305,7 @@
             btn7.TabIndex = 18;
             btn7.Text = "7";
             btn7.UseVisualStyleBackColor = false;
+            btn7.Click += btn7_Click;
             // 
             // btnErase
             // 
@@ -329,16 +342,19 @@
             btnClear.TabIndex = 22;
             btnClear.Text = "CE";
             btnClear.UseVisualStyleBackColor = false;
+            btnClear.Click += btnClear_Click;
             // 
-            // textBox2
+            // txtEquation
             // 
-            textBox2.BackColor = Color.IndianRed;
-            textBox2.BorderStyle = BorderStyle.None;
-            textBox2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.Location = new Point(12, 36);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(210, 16);
-            textBox2.TabIndex = 25;
+            txtEquation.BackColor = Color.IndianRed;
+            txtEquation.BorderStyle = BorderStyle.None;
+            txtEquation.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtEquation.Location = new Point(12, 42);
+            txtEquation.Multiline = true;
+            txtEquation.Name = "txtEquation";
+            txtEquation.Size = new Size(210, 17);
+            txtEquation.TabIndex = 25;
+            txtEquation.TextAlign = HorizontalAlignment.Right;
             // 
             // btnSettings
             // 
@@ -354,10 +370,10 @@
             // lblHistory
             // 
             lblHistory.AutoSize = true;
-            lblHistory.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblHistory.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblHistory.Location = new Point(231, 18);
             lblHistory.Name = "lblHistory";
-            lblHistory.Size = new Size(45, 15);
+            lblHistory.Size = new Size(47, 15);
             lblHistory.TabIndex = 27;
             lblHistory.Text = "History";
             lblHistory.Click += label1_Click;
@@ -379,7 +395,7 @@
             Controls.Add(txtHistory);
             Controls.Add(lblHistory);
             Controls.Add(btnSettings);
-            Controls.Add(textBox2);
+            Controls.Add(txtEquation);
             Controls.Add(btnErase);
             Controls.Add(btnDelete);
             Controls.Add(btnClear);
@@ -403,10 +419,10 @@
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
-            Controls.Add(textBox1);
+            Controls.Add(txtDisplay);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Form1";
-            Text = "Form1";
+            Text = "Calculator";
             Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -414,7 +430,7 @@
 
         #endregion
 
-        private TextBox textBox1;
+        private TextBox txtDisplay;
         private Button button1;
         private Button button2;
         private Button button3;
@@ -438,7 +454,7 @@
         private Button btnErase;
         private Button btnDelete;
         private Button btnClear;
-        private TextBox textBox2;
+        private TextBox txtEquation;
         private Button btnSettings;
         private Label lblHistory;
         private TextBox txtHistory;
