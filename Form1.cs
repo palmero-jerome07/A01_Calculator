@@ -64,7 +64,6 @@ namespace A01_Calculator
             else if (txtDisplay.Text == "" && btn.Text == ".")
             {
                 txtDisplay.Text = "0.";
-
             } 
             else
             {
@@ -74,9 +73,29 @@ namespace A01_Calculator
                     txtDisplay.Text = txtDisplay.Text.Replace("..", ".");
                 }
             }
+            
 
+            int dotCounts = txtEquation.Text.Count(c => c == '.');
 
-            txtEquation.Text += btn.Text;
+            if (dotCounts >= 1)
+            {
+                if (btn.Text != ".")
+                {
+                    txtEquation.Text += btn.Text;
+                }
+            }
+            else if (txtEquation.Text == "" && btn.Text == ".")
+            {
+                txtEquation.Text = "0.";
+            }
+            else
+            {
+                txtEquation.Text += btn.Text;
+                if (txtEquation.Text.Contains(".."))
+                {
+                    txtEquation.Text = txtEquation.Text.Replace("..", ".");
+                }
+            }
         }
 
         private void btn1_Click(object sender, EventArgs e)
