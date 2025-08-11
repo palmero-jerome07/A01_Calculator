@@ -22,7 +22,7 @@ This project demonstrates the fundamentals of WinForms UI design, event handling
 
 🚀 How to Run
 1. Clone this repository:
-    - git clone https://github.com/yourusername/your-repository.git
+    - git clone [https://github.com/yourusername/your-repository.git](https://github.com/palmero-jerome07/A01_Calculator.git)
 2. Open the .sln file in Visual Studio.
 3. Press F5 or click Start to run the project.
 
