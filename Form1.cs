@@ -144,6 +144,15 @@ namespace A01_Calculator
         {
             txtDisplay.Text = "0";
             isNewEntry = true;
+
+            if (!string.IsNullOrWhiteSpace(operation) && txtEquation.Text.Contains(operation))
+            {
+                int opIndex = txtEquation.Text.LastIndexOf(operation);
+                if (opIndex >= 0)
+                {
+                    txtEquation.Text = txtEquation.Text.Substring(0, opIndex + operation.Length + 1);
+                }
+            }
         }
 
         private void btnDot_MouseDown(object sender, MouseEventArgs e)
