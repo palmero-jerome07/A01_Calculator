@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             txtDisplay = new TextBox();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
             btn0 = new Button();
             btnDot = new Button();
             btnPlus = new Button();
@@ -56,6 +52,10 @@
             btnSettings = new Button();
             lblHistory = new Label();
             txtHistory = new TextBox();
+            button1 = new Button();
+            button2 = new Button();
+            button3 = new Button();
+            button4 = new Button();
             SuspendLayout();
             // 
             // txtDisplay
@@ -66,42 +66,6 @@
             txtDisplay.Size = new Size(210, 35);
             txtDisplay.TabIndex = 0;
             txtDisplay.TextAlign = HorizontalAlignment.Right;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(14, 427);
-            button1.Name = "button1";
-            button1.Size = new Size(72, 66);
-            button1.TabIndex = 2;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(95, 427);
-            button2.Name = "button2";
-            button2.Size = new Size(72, 66);
-            button2.TabIndex = 3;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(173, 427);
-            button3.Name = "button3";
-            button3.Size = new Size(72, 66);
-            button3.TabIndex = 4;
-            button3.Text = "button3";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            button4.Location = new Point(251, 427);
-            button4.Name = "button4";
-            button4.Size = new Size(72, 66);
-            button4.TabIndex = 5;
-            button4.Text = "button4";
-            button4.UseVisualStyleBackColor = true;
             // 
             // btn0
             // 
@@ -323,6 +287,7 @@
             btnErase.TabIndex = 24;
             btnErase.Text = "⌫";
             btnErase.UseVisualStyleBackColor = false;
+            btnErase.Click += btnErase_Click;
             // 
             // btnDelete
             // 
@@ -335,6 +300,7 @@
             btnDelete.TabIndex = 23;
             btnDelete.Text = "C";
             btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnClear
             // 
@@ -391,6 +357,42 @@
             txtHistory.Size = new Size(107, 304);
             txtHistory.TabIndex = 28;
             // 
+            // button1
+            // 
+            button1.Location = new Point(14, 427);
+            button1.Name = "button1";
+            button1.Size = new Size(72, 66);
+            button1.TabIndex = 2;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(95, 427);
+            button2.Name = "button2";
+            button2.Size = new Size(72, 66);
+            button2.TabIndex = 3;
+            button2.Text = "button2";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(173, 427);
+            button3.Name = "button3";
+            button3.Size = new Size(72, 66);
+            button3.TabIndex = 4;
+            button3.Text = "button3";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(251, 427);
+            button4.Name = "button4";
+            button4.Size = new Size(72, 66);
+            button4.TabIndex = 5;
+            button4.Text = "button4";
+            button4.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -436,10 +438,6 @@
         #endregion
 
         private TextBox txtDisplay;
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
         private Button btn0;
         private Button btnDot;
         private Button btnPlus;
@@ -463,5 +461,9 @@
         private Button btnSettings;
         private Label lblHistory;
         private TextBox txtHistory;
+        private Button button1;
+        private Button button2;
+        private Button button3;
+        private Button button4;
     }
 }
