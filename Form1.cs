@@ -12,7 +12,10 @@ namespace A01_Calculator
         string operation = "";
         double firstNumber = 0;
 
+
         string dbPath = @"C:\LOCALDB\Calculator.accdb";
+
+
 
         public Form1()
         {
@@ -48,7 +51,7 @@ namespace A01_Calculator
         }
         private void Load_Key(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
+            Button btn = (Button) sender;
 
             if (isNewEntry)
             {
@@ -58,7 +61,8 @@ namespace A01_Calculator
             if (btn.Text != "." && txtDisplay.Text == "0")
             {
                 txtDisplay.Text = btn.Text;
-                txtEquation.Text = btn.Text;
+                txtEquation.Text += btn.Text;
+
                 return;
             }
 
@@ -171,8 +175,8 @@ namespace A01_Calculator
 
         private void Operator(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
-
+            Button btn = (Button) sender;
+             
             if (double.TryParse(txtDisplay.Text, out firstNumber))
             {
                 operation = btn.Text;
@@ -312,6 +316,28 @@ namespace A01_Calculator
                     txtEquation.Text = txtEquation.Text.Substring(0, txtEquation.Text.Length - 1);
                 }
             }
+        }
+
+        private void btnErase_Click(object sender, EventArgs e)
+        {
+            if (txtDisplay.Text.Length > 0)
+            {
+                txtDisplay.Text = txtDisplay.Text.Substring(0, txtDisplay.Text.Length - 1);
+
+                if (txtEquation.Text.Length > 0)
+                {
+                    txtEquation.Text = txtEquation.Text.Substring(0, txtEquation.Text.Length - 1);
+                }
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Text = "0";
+            txtEquation.Clear();
+            operation = "";
+            firstNumber = 0;
+            isNewEntry = true;
         }
     }
 }
