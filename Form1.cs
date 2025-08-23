@@ -1,11 +1,18 @@
+using System.Data.OleDb;
+using System.Windows.Forms;
+
 namespace A01_Calculator
 {
     public partial class Form1 : Form
     {
+
         private bool isNewEntry = true;
         private int originalWidth;
         string operation = "";
         double firstNumber = 0;
+
+        string dbPath = @"C:\LOCALDB\Calculator.accdb";
+
         public Form1()
         {
             InitializeComponent();
@@ -49,7 +56,9 @@ namespace A01_Calculator
             }
             if (btn.Text != "." && txtDisplay.Text == "0")
             {
-                txtDisplay.Text += "";
+                txtDisplay.Text = btn.Text;
+                txtEquation.Text = btn.Text;
+                return;
             }
 
             int dotCount = txtDisplay.Text.Count(c => c == '.');
@@ -136,8 +145,17 @@ namespace A01_Calculator
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            txtDisplay.Clear();
-            txtEquation.Clear();
+            txtDisplay.Text = "0";
+            isNewEntry = true;
+
+            if (!string.IsNullOrWhiteSpace(operation) && txtEquation.Text.Contains(operation))
+            {
+                int opIndex = txtEquation.Text.LastIndexOf(operation);
+                if (opIndex >= 0)
+                {
+                    txtEquation.Text = txtEquation.Text.Substring(0, opIndex + operation.Length + 1);
+                }
+            }
         }
 
         private void btnDot_MouseDown(object sender, MouseEventArgs e)
@@ -156,7 +174,6 @@ namespace A01_Calculator
 
             if (double.TryParse(txtDisplay.Text, out firstNumber))
             {
-
                 operation = btn.Text;
                 isNewEntry = true;
                 txtEquation.Text = firstNumber.ToString() + " " + operation + " ";
@@ -164,7 +181,6 @@ namespace A01_Calculator
         }
         private void total()
         {
-
             double secondNumber = 0;
             double result = 0;
             if (!double.TryParse(txtDisplay.Text, out secondNumber))
@@ -196,12 +212,64 @@ namespace A01_Calculator
                     return;
             }
             txtDisplay.Text = result.ToString();
+            txtEquation.Text += " = " + result.ToString();
             isNewEntry = true;
         }
 
         private void btnEquals_Click(object sender, EventArgs e)
         {
             total(); //total of the equation
+            InsertEquationToDatabase(txtEquation.Text);
+            // DisplayDBtoTB();
+        }
+
+        private void InsertEquationToDatabase(string equationText)
+        {
+            // Build connection string again
+            string connStr = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={dbPath};";
+
+            //SQL query for inserting a new row into the table
+            string insertQuery = "INSERT INTO tbl_Calculator_History (Equation) VALUES (@equation)";
+
+            //Use OleDbConnection in using block for safety
+            using (OleDbConnection conn = new OleDbConnection(connStr))
+            {
+                try
+                {
+                    conn.Open();
+                    OleDbCommand insertCmd = new OleDbCommand(insertQuery, conn);
+                    insertCmd.Parameters.AddWithValue("@equation", equationText);
+                    insertCmd.ExecuteNonQuery();
+
+                    conn.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error inserting data: " + ex.Message);
+                }
+            }
+        }
+
+        private void btnDelete_Click_1(object sender, EventArgs e)
+        {
+            txtDisplay.Text = "0";
+            txtEquation.Clear();
+            operation = "";
+            firstNumber = 0;
+            isNewEntry = true;
+        }
+
+        private void btnErase_Click_1(object sender, EventArgs e)
+        {
+            if (txtDisplay.Text.Length > 0)
+            {
+                txtDisplay.Text = txtDisplay.Text.Substring(0, txtDisplay.Text.Length - 1);
+
+                if (txtEquation.Text.Length > 0)
+                {
+                    txtEquation.Text = txtEquation.Text.Substring(0, txtEquation.Text.Length - 1);
+                }
+            }
         }
     }
 }

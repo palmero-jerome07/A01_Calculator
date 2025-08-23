@@ -264,7 +264,7 @@
             // 
             btnTimes.BackColor = Color.FromArgb(224, 136, 4);
             btnTimes.FlatAppearance.BorderSize = 0;
-            btnTimes.Font = new Font("Segoe UI", 18F);
+            btnTimes.Font = new Font("Segoe UI", 25F);
             btnTimes.Location = new Point(174, 146);
             btnTimes.Name = "btnTimes";
             btnTimes.Size = new Size(48, 44);
@@ -323,6 +323,7 @@
             btnErase.TabIndex = 24;
             btnErase.Text = "⌫";
             btnErase.UseVisualStyleBackColor = false;
+            btnErase.Click += btnErase_Click_1;
             // 
             // btnDelete
             // 
@@ -335,6 +336,7 @@
             btnDelete.TabIndex = 23;
             btnDelete.Text = "C";
             btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += btnDelete_Click_1;
             // 
             // btnClear
             // 
