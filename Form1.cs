@@ -1,4 +1,5 @@
 using System.Data.OleDb;
+using System.Text;
 using System.Windows.Forms;
 
 namespace A01_Calculator
@@ -224,7 +225,7 @@ namespace A01_Calculator
         {
             total(); //total of the equation
             InsertEquationToDatabase(txtEquation.Text);
-            // DisplayDBtoTB();
+            DisplayDBtoTB();
         }
 
         private void InsertEquationToDatabase(string equationText)
@@ -250,6 +251,47 @@ namespace A01_Calculator
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error inserting data: " + ex.Message);
+                }
+            }
+        }
+        private void DisplayDBtoTB()
+        {
+            // Build connection string
+            string connStr = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={dbPath};";
+
+            // SQL query to fetch all rows from the table
+            string query = "SELECT Equation FROM tbl_Calculator_History order by ID desc";
+            //string clearTb = "DELETE FROM tbl_Calculator_History WHERE ID";
+
+            // Use OleDbConnection in a using block for safety
+            using (OleDbConnection conn = new OleDbConnection(connStr))
+            {
+                try
+                {   
+                    //open the connection to the Access database   
+                    conn.Open();
+                    //Prepare the SQL command using the query
+                    OleDbCommand selectCmd = new OleDbCommand(query, conn);
+                    //Excute the command and get the data reader
+                    OleDbDataReader reader = selectCmd.ExecuteReader();
+                    //Use StringBuilder to build the output string efficiently
+                    StringBuilder sb = new StringBuilder();
+                    // Clear the TextBox before appending new data
+                    txtHistory.Clear();
+
+                    // Read data and append to the TextBox
+                    while (reader.Read())
+                    {
+                        string equation = reader["Equation"].ToString();
+                        sb.AppendLine(equation);
+                    }
+                    txtHistory.ScrollBars = ScrollBars.Vertical;
+                    txtHistory.Text = sb.ToString();
+                    conn.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error fetching data: " + ex.Message);
                 }
             }
         }
